@@ -14,21 +14,8 @@ public class Puzzle : MonoBehaviour
 
     private PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
 
-    private void Start()
-    {
-        UpdateInteractables();
 
-        foreach (var piece in puzzlePieces)
-        {
-            piece.SetIndex();
-            Sprite sprite = AssetService.GetPuzzleSprite("Gift", piece.Index);
-            piece.Setup(sprite, canvas, OnPieceEndDrag);
-        }
-
-        EmptyPiece.SetAsEmpty();
-    }
-
-    public void OnGameStarted(string puzzleName)
+    public void StartGame(string puzzleName)
     {
         UpdateInteractables();
 
