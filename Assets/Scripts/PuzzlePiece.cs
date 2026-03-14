@@ -8,6 +8,8 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
     [SerializeField]
     private RectTransform imageRectTransform;
     [SerializeField]
+    private Image emptyFrame;
+    [SerializeField]
     private Image puzzleImage;
 
     public int Index { get; private set; }
@@ -27,7 +29,8 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void SetAsEmpty()
     {
-        puzzleImage.enabled = false;
+        puzzleImage.gameObject.SetActive(false);
+        emptyFrame.gameObject.SetActive(true);
     }
 
     public void SetIndex()
