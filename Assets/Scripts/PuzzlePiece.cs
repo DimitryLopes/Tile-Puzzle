@@ -50,15 +50,16 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        Vector3 worldPoint;
+
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
             canvas.transform as RectTransform,
             eventData.position,
             canvas.worldCamera,
-            out localPoint
+            out worldPoint
         );
-        imageRectTransform.anchoredPosition = localPoint;
-        //imageRectTransform.localPosition = localPoint;
+
+        imageRectTransform.position = worldPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)
