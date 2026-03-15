@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,4 +19,6 @@ public class EventManager : MonoBehaviour
     public static UnityEvent<IScreen> OnScreenAfterShowEvent = new UnityEvent<IScreen>();
     public static UnityEvent<IScreen> OnScreenBeforeHideEvent = new UnityEvent<IScreen>();
     public static UnityEvent<IScreen> OnScreenBeforeShowEvent = new UnityEvent<IScreen>();
+
+    public static UnityEvent<string> OnGameStarted = new UnityEvent<string>();
 }

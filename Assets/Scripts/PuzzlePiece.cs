@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
+public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private RectTransform imageRectTransform;
@@ -11,44 +11,89 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
     private Image emptyFrame;
     [SerializeField]
     private Image puzzleImage;
+    [SerializeField]
+    private float animationDuration;
+    [SerializeField]
+    private UIAnimationComponent puzzleImageAnimation;
+    [SerializeField]
+    private UIAnimationComponent emptyFrameAnimation;
 
     public int Index { get; private set; }
+    public bool IsMouseOver { get; private set; }
 
+    private bool isEmpty = false;
     private Canvas canvas;
-    private Vector3 startPosition;
 
     private Action<PuzzlePiece, PointerEventData> onEndDragCallback;
 
-    public void Setup(Sprite sprite, Canvas canvas,Action<PuzzlePiece, PointerEventData> endDragCallback)
+    public void Setup(Sprite sprite, Canvas canvas, Action<PuzzlePiece, PointerEventData> endDragCallback)
     {
         puzzleImage.sprite = sprite;
         this.canvas = canvas;
-        startPosition = imageRectTransform.anchoredPosition;
         onEndDragCallback = endDragCallback;
+        isEmpty = false;
     }
 
     public void SetAsEmpty()
     {
         puzzleImage.gameObject.SetActive(false);
         emptyFrame.gameObject.SetActive(true);
+        isEmpty = true;
     }
 
-    public void SetIndex()
+    public void SetIndex(int index)
     {
-        Index = transform.GetSiblingIndex();
+        Index = index;
     }
 
     public void Move(PuzzlePiece target)
     {
-        transform.SetSiblingIndex(target.Index);
-        target.transform.SetSiblingIndex(Index);
-        SetIndex();
-        target.SetIndex();
+        RectTransform rect = transform as RectTransform;
+        RectTransform targetRect = target.transform as RectTransform;
+
+        Vector2 holderPosition = rect.anchoredPosition;
+        Vector2 targetPosition = targetRect.anchoredPosition;
+
+        LeanTween.move(rect, targetPosition, animationDuration)
+            .setEase(LeanTweenType.easeOutQuart);
+
+        LeanTween.move(targetRect, holderPosition, animationDuration)
+            .setEase(LeanTweenType.easeOutQuart);
+
+        var indexHolder = Index;
+        Index = target.Index;
+        target.SetIndex(indexHolder);
+
+        ResetImagePosition();
+    }
+
+    public void ResetImagePosition()
+    {
+        puzzleImageAnimation.PlayInAnimations();
+    }
+
+    public void SetImagePosition(Vector3 position)
+    {
+        imageRectTransform.position = position;
     }
 
     public void SetInteractable(bool value)
     {
         puzzleImage.raycastTarget = value;
+    }
+
+    private void UpdateEmptyFrame()
+    {
+        if (!isEmpty) return;
+
+        if (IsMouseOver)
+        {
+            emptyFrameAnimation.PlayInAnimations();
+        }
+        else
+        {
+            emptyFrameAnimation.PlayOutAnimations();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -68,13 +113,19 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         onEndDragCallback.Invoke(this, eventData);
-        MoveImage();
     }
 
-    private void MoveImage()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        //Tween the image back to its original position, achored position should always 
-        //return it to the correct place in the grid, even if the piece has been moved to a different sibling index
-        imageRectTransform.anchoredPosition = startPosition;
+        IsMouseOver = true;
+        UpdateEmptyFrame();
     }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        IsMouseOver = false;
+        UpdateEmptyFrame();
+    }
+
 }
+

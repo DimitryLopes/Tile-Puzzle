@@ -3,10 +3,6 @@ using UnityEngine.EventSystems;
 
 public class Puzzle : MonoBehaviour
 {
-    private const int GRID_SIZE = 3; // 3x3
-
-    [SerializeField]
-    private Canvas canvas;
     [SerializeField]
     private PuzzlePiece[] puzzlePieces;
     [SerializeField]
@@ -14,60 +10,70 @@ public class Puzzle : MonoBehaviour
 
     private PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
 
-
-    public void StartGame(string puzzleName)
-    {
-        UpdateInteractables();
-
-        foreach (var piece in puzzlePieces)
+    public void StartGame(string puzzleName, Canvas canvas)
+    {   
+        for(int i = 0; i < puzzlePieces.Length; i++)
         {
-            piece.SetIndex();
+            Vector2 position = GetPiecePosition(i);
+            (puzzlePieces[i].transform as RectTransform).anchoredPosition = position;
+            var piece = puzzlePieces[i];
+            piece.SetIndex(i);
             Sprite sprite = AssetService.GetPuzzleSprite(puzzleName, piece.Index);
             piece.Setup(sprite, canvas, OnPieceEndDrag);
         }
+        EmptyPiece.SetAsEmpty();
+        UpdateInteractables();
+    }
+
+    private Vector2 GetPiecePosition(int index)
+    {
+        int col = GetPieceColumn(index);
+        int row = GetPieceRow(index);
+        var X = Constants.Puzzle.PUZLLE_PIECE_STARTING_POSITION_X + col * Constants.Puzzle.PUZZLE_PIECE_POSITION_OFFSET;
+        var Y = Constants.Puzzle.PUZLLE_PIECE_STARTING_POSITION_Y + row * -Constants.Puzzle.PUZZLE_PIECE_POSITION_OFFSET;
+        return new Vector2(X, Y);
     }
 
     private void UpdateInteractables()
     {
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
-            bool isAdjacent = IsAdjacent(i, EmptyPiece.Index);
+            bool isAdjacent = IsAdjacent(puzzlePieces[i].Index, EmptyPiece.Index);
             puzzlePieces[i].SetInteractable(isAdjacent);
         }
     }
 
     private bool IsAdjacent(int indexA, int indexB)
     {
-        int rowA = indexA / GRID_SIZE;
-        int colA = indexA % GRID_SIZE;
-        int rowB = indexB / GRID_SIZE;
-        int colB = indexB % GRID_SIZE;
+        int rowA = GetPieceRow(indexA);
+        int colA = GetPieceColumn(indexA);
+        int rowB = GetPieceRow(indexB);
+        int colB = GetPieceColumn(indexB);
 
         return (Mathf.Abs(rowA - rowB) == 1 && colA == colB) ||
                (Mathf.Abs(colA - colB) == 1 && rowA == rowB);
     }
 
-    private void MovePiece(int from, int to)
+    private int GetPieceRow(int index)
     {
-        var pieceToMove = puzzlePieces[from];
-        var targetPiece = puzzlePieces[to];
+        return index / Constants.Puzzle.GRID_SIZE;
+    }
 
-        pieceToMove.Move(targetPiece);
+    private int GetPieceColumn(int index)
+    {
+        return index % Constants.Puzzle.GRID_SIZE;
     }
 
     private void OnPieceEndDrag(PuzzlePiece piece, PointerEventData data)
     {
-        Vector2 localMousePosition;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            emptyPieceRect,
-            data.position,
-            data.pressEventCamera,
-            out localMousePosition
-        ); 
-        
-        if (emptyPieceRect.rect.Contains(localMousePosition))
+        if (EmptyPiece.IsMouseOver)
         {
-            MovePiece(piece.Index, EmptyPiece.Index);
+            piece.Move(EmptyPiece);
+            UpdateInteractables();
+        }
+        else
+        {
+            piece.ResetImagePosition();
         }
     }
 }

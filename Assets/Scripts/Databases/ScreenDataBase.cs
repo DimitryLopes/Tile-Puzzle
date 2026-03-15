@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UIScreenDataBase", menuName = "Scriptable Objects/UI/UIScreenDataBase")]
+[CreateAssetMenu(fileName = "UIScreenDataBase", menuName = "Scriptable Objects/Databases/UIScreenDataBase")]
 public class ScreenDataBase : ScriptableObject
 {
     public const string SCREEN_PREFAB_PATH = "Assets/Prefabs/UI/Screens";
@@ -13,6 +13,8 @@ public class ScreenDataBase : ScriptableObject
     public Dictionary<Type, GameObject> UIScreens = new Dictionary<Type, GameObject>();
 
 #if UNITY_EDITOR
+    
+    [ContextMenu("Update Screen List")]
     public void UpdateScreenList()
     {
         RegisteredScreens.Clear();

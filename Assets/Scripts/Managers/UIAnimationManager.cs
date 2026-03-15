@@ -13,7 +13,6 @@ public class UIAnimationManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private Dictionary<GameObject, List<UIAnimation>> activeAnimations = new();

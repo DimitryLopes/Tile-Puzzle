@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GameScreen : UIScreen<GameScreenController>
@@ -10,6 +9,6 @@ public class GameScreen : UIScreen<GameScreenController>
     protected override void OnAfterShow()
     {
         base.OnAfterShow();
-        puzzle.StartGame(Controller.PuzzleName);
+        puzzle.StartGame(Controller.PuzzleName, Controller.Canvas);
     }
 }

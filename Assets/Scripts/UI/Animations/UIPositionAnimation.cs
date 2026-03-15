@@ -9,11 +9,22 @@ public class UIPositionAnimation : UIAnimation
     }
 
     [Header("Position Settings")]
-    [SerializeField] private bool startFromSetPosition = true;
-    [SerializeField, ShowIf("startFromSetPosition")] private Vector3 startPosition = Vector3.zero;
-    [SerializeField] private Vector3 endPosition = Vector3.zero;
-    [SerializeField] private MovementType movementType = MovementType.Linear;
-    [SerializeField][ShowIf("movementType", MovementType.Arch)] private AnimationCurve movementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f); // Animation curve for arch movement
+    [SerializeField]
+    private bool startFromSetPosition = true;
+    [SerializeField]
+    private bool finishAtSetPosition = true;
+
+    [SerializeField, ShowIf("startFromSetPosition")] 
+    private Vector3 startPosition = Vector3.zero;
+
+    [SerializeField] 
+    private Vector3 endPosition = Vector3.zero;
+
+    [SerializeField] 
+    private MovementType movementType = MovementType.Linear;
+
+    [SerializeField][ShowIf("movementType", MovementType.Arch)] 
+    private AnimationCurve movementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f); // Animation curve for arch movement
     
     private RectTransform rectTransform;
 
@@ -23,6 +34,8 @@ public class UIPositionAnimation : UIAnimation
         if (!startFromSetPosition)
         {
             startPosition =  rectTransform.anchoredPosition;
+
+            if (!finishAtSetPosition)
             endPos = new Vector3(rectTransform.localPosition.x + endPosition.x,
                 rectTransform.localPosition.y + endPosition.y);
         }
