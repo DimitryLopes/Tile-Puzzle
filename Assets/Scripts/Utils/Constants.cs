@@ -12,4 +12,10 @@ public static class Constants
         public const int PUZLLE_PIECE_STARTING_POSITION_X = 105;
         public const int PUZLLE_PIECE_STARTING_POSITION_Y = -105;
     }
+
+    public class Screens
+    {
+        public const string GAME_OVER_GAME_WON_TITLE = "Vitória!";
+        public const string GAME_OVER_GAME_LOST_TITLE = "Derrota";
+    }
 }

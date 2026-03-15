@@ -8,19 +8,41 @@ public class Puzzle : MonoBehaviour
     [SerializeField]
     private RectTransform emptyPieceRect;
 
+    private bool isFirstGame = true;
     private PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
 
     public void StartGame(string puzzleName, Canvas canvas)
-    {   
-        for(int i = 0; i < puzzlePieces.Length; i++)
+    {
+        if (isFirstGame)
         {
-            Vector2 position = GetPiecePosition(i);
-            (puzzlePieces[i].transform as RectTransform).anchoredPosition = position;
-            var piece = puzzlePieces[i];
-            piece.SetIndex(i);
-            Sprite sprite = AssetService.GetPuzzleSprite(puzzleName, piece.Index);
-            piece.Setup(sprite, canvas, OnPieceEndDrag);
+            for (int i = 0; i < puzzlePieces.Length; i++)
+            {
+                puzzlePieces[i].SetDefaultIndex(i);
+            }
+            isFirstGame = false;
         }
+
+        var shuffledPieces = new PuzzlePiece[puzzlePieces.Length];
+        puzzlePieces.CopyTo(shuffledPieces, 0);
+        shuffledPieces.Shuffle();
+
+        bool isGameOver = false;
+
+        do
+        {
+            for (int i = 0; i < shuffledPieces.Length; i++)
+            {
+                Vector2 position = GetPiecePosition(i);
+                (shuffledPieces[i].transform as RectTransform).anchoredPosition = position;
+                var piece = shuffledPieces[i];
+                piece.SetIndex(i);
+                Sprite sprite = AssetService.GetPuzzleSprite(puzzleName, piece.DefaultIndex);
+                piece.Setup(sprite, canvas, OnPieceEndDrag);
+            }
+            isGameOver = CheckGameOver();
+        } while (isGameOver);
+
+
         EmptyPiece.SetAsEmpty();
         UpdateInteractables();
     }
@@ -39,9 +61,24 @@ public class Puzzle : MonoBehaviour
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
             bool isAdjacent = IsAdjacent(puzzlePieces[i].Index, EmptyPiece.Index);
-            puzzlePieces[i].SetInteractable(isAdjacent);
+            puzzlePieces[i].SetInteractable(true); //TODO: change to isAdjacent
         }
     }
+
+    private bool CheckGameOver()
+    {
+        foreach(PuzzlePiece piece in puzzlePieces)
+        {
+            if (piece.Index != piece.DefaultIndex)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    #region utils
 
     private bool IsAdjacent(int indexA, int indexB)
     {
@@ -63,12 +100,20 @@ public class Puzzle : MonoBehaviour
     {
         return index % Constants.Puzzle.GRID_SIZE;
     }
+    #endregion
 
     private void OnPieceEndDrag(PuzzlePiece piece, PointerEventData data)
     {
         if (EmptyPiece.IsMouseOver)
         {
             piece.Move(EmptyPiece);
+            bool isGameOver = CheckGameOver();
+
+            if (isGameOver)
+            {
+                Debug.Log("Game Over!");
+                return;
+            }
             UpdateInteractables();
         }
         else

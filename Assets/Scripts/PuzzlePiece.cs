@@ -19,12 +19,18 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
     private UIAnimationComponent emptyFrameAnimation;
 
     public int Index { get; private set; }
+    public int DefaultIndex { get; private set; }
     public bool IsMouseOver { get; private set; }
 
     private bool isEmpty = false;
     private Canvas canvas;
 
     private Action<PuzzlePiece, PointerEventData> onEndDragCallback;
+
+    public void SetDefaultIndex(int index)
+    {
+        DefaultIndex = index;
+    }
 
     public void Setup(Sprite sprite, Canvas canvas, Action<PuzzlePiece, PointerEventData> endDragCallback)
     {

@@ -1,18 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameOverScreen : MonoBehaviour
+public class GameOverScreen : UIScreen<GameOverScreenController>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private TextMeshProUGUI titleText;
+    [SerializeField]
+    private Button playAgainButton;
+    [SerializeField]
+    private Button exitButton;
+
+    protected override void OnBeforeShow()
     {
-        
+        base.OnBeforeShow();
+        playAgainButton.onClick.AddListener(OnPlayAgainButtonClicked);
+        exitButton.onClick.AddListener(OnExitButtonClicked);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnAfterHide()
     {
-        
+        base.OnAfterHide();
+        playAgainButton.onClick.RemoveListener(OnPlayAgainButtonClicked);
+        exitButton.onClick.RemoveListener(OnExitButtonClicked);
+    }
+
+    private void OnExitButtonClicked()
+    {
+        Controller.OnExitButtonClicked.Invoke();
+    }
+
+    private void OnPlayAgainButtonClicked()
+    {
+        Controller.OnPlayButtonClicked.Invoke();
     }
 }
+
