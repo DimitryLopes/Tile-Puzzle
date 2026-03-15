@@ -22,4 +22,6 @@ public class EventManager : MonoBehaviour
 
     public static UnityEvent<string> OnGameStarted = new UnityEvent<string>();
     public static UnityEvent<bool> OnGameOver = new UnityEvent<bool>();
+
+    public static UnityEvent<bool> OnEventEnded = new UnityEvent<bool>();
 }
