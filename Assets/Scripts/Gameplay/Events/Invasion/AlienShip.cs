@@ -1,11 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class AlienShip : Activateable, IPointerClickHandler
+public class AlienShip : Activateable
 {
     [SerializeField]
-    private float speed = 5f;
+    public RectTransform rectTransform;
+    [SerializeField]
+    private Button button;
+    [SerializeField]
+    private float speed = 50f;
     [SerializeField]
     private float shipSize = 1f;
     [SerializeField]
@@ -17,6 +22,16 @@ public class AlienShip : Activateable, IPointerClickHandler
     private Action onShipClicked;
     private Vector3 targetPosition;
 
+    private void Awake()
+    {
+        button.onClick.AddListener(OnPointerClick);
+    }
+
+    private void OnDestroy()
+    {
+        button.onClick.RemoveAllListeners();
+    }
+
     public void Setup(Vector3 target, Action onTargetReached, Action onShipDestroyed)
     {
         this.onTargetReached = onTargetReached;
@@ -24,24 +39,41 @@ public class AlienShip : Activateable, IPointerClickHandler
         targetPosition = target;
     }
 
+    public override void OnActivate()
+    {
+        base.OnActivate();
+        rectTransform.rotation = Quaternion.identity;
+    }
+
     private void Update()
     {
-        transform.Translate(transform.position - targetPosition * speed * Time.deltaTime);
+        rectTransform.anchoredPosition = Vector2.MoveTowards(
+            rectTransform.anchoredPosition,
+            targetPosition,
+            speed * Time.deltaTime
+        );
 
-        if(Vector3.Distance(transform.position, targetPosition) < shipSize)
+        if (Vector3.Distance(transform.position, targetPosition) < shipSize)
         {
             onTargetReached?.Invoke();
         }
     }
-    
+
     public void DestroyShip()
     {
-        var normalizedTarget = (targetPosition - transform.position).normalized;
-        transform.LeanMoveLocal(normalizedTarget * animationDistance, animationDuration)
+        Vector2 current = rectTransform.anchoredPosition;
+
+        Vector2 dir = (current - (Vector2)targetPosition).normalized;
+
+        Vector2 finalPosition = current + dir * animationDistance;
+
+        LeanTween.move(rectTransform, finalPosition, animationDuration)
             .setOnComplete(Deactivate);
+
+        rectTransform.LeanRotateZ(1200, animationDuration);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick()
     {
         onShipClicked?.Invoke();
         DestroyShip();

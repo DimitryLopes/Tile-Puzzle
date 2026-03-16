@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = false;
     private bool isEventActive = false;
-    private float eventTimer;
+    private float eventTimer = 10f;
+    private GameEvent currentEvent = null;
 
     private void Start()
     {
@@ -36,13 +37,20 @@ public class GameManager : MonoBehaviour
                 eventTimer = Random.Range(minEventTimer, maxEventTimer);
                 GameEvent evt = gameEvents.GetRandom();
                 evt.StartEvent();
+                currentEvent = evt;
             }
+        }
+
+        if (isEventActive)
+        {
+            currentEvent.UpdateEvent();
         }
     }
 
     private void OnEventEnded(bool isWin)
     {
         isEventActive = false;
+        if (isWin) return;
         EventManager.OnGameOver.Invoke(isWin);
     }
 

@@ -80,11 +80,15 @@ public class AlienInvasion : GameEvent
         }
 
         var newShip = Instantiate(shipPrefab, shipContainer);
+        newShip.Setup(targetPosition, OnShipReachedTarget, OnShipClicked);
+        newShip.Activate();
+        PositionShip(newShip);
+        alienShips.Add(newShip);
     }
 
     private void PositionShip(AlienShip ship)
     {
-        ship.transform.position = Random.insideUnitCircle.normalized * shipSpawnDistance;
+        ship.rectTransform.anchoredPosition = Random.insideUnitCircle.normalized * shipSpawnDistance;
 
     }
 }
