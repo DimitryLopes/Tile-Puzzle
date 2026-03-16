@@ -98,8 +98,8 @@ MonoBehaviour:
       m_Calls: []
   rectTransform: {fileID: 457325335005119671}
   button: {fileID: 9124966514016902503}
-  speed: 50
-  shipSize: 1
+  speed: 200
+  shipSize: 100
   animationDuration: 1
   animationDistance: 900
 --- !u!114 &8289496448319987865

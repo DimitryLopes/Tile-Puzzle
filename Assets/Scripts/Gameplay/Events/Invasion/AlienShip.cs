@@ -53,7 +53,8 @@ public class AlienShip : Activateable
             speed * Time.deltaTime
         );
 
-        if (Vector3.Distance(transform.position, targetPosition) < shipSize)
+        var distance = Vector3.Distance(rectTransform.anchoredPosition, targetPosition);
+        if (distance < shipSize)
         {
             onTargetReached?.Invoke();
         }
