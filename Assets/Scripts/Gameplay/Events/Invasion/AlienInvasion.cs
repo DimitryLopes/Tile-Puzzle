@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlienInvasion : GameEvent
 {
-    [SerializeField]
+    [SerializeField, Space]
     private int numberOfShips = 10;
     [SerializeField]
     private float spawnInterval = 5f;

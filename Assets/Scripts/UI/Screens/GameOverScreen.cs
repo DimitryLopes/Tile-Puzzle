@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +6,8 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
 {
     [SerializeField]
     private TextMeshProUGUI titleText;
+    [SerializeField]
+    private TextMeshProUGUI subtitleText;
     [SerializeField]
     private Button playAgainButton;
     [SerializeField]

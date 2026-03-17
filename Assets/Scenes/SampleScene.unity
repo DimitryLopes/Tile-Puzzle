@@ -499,6 +499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8589fb791e4894fabb54364eb50ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startMessage: 
+  victoryMessage: 
+  defeatMessage: 
   numberOfShips: 10
   spawnInterval: 1
   shipPrefab: {fileID: 6203053260881520708, guid: b0227d688693cf54fa8f427f55764f05, type: 3}
@@ -643,8 +646,10 @@ MonoBehaviour:
   canvas: {fileID: 1480748244}
   minEventTimer: 30
   maxEventTimer: 40
-  gameEvents:
-  - {fileID: 1256187330}
+  eventDatas:
+  - eventID: 1
+    eventIcon: {fileID: 498916237, guid: 8757a28b96de93944a4eccafe87e21f6, type: 3}
+    gameEvent: {fileID: 1256187330}
 --- !u!1 &1480748240
 GameObject:
   m_ObjectHideFlags: 0

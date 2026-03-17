@@ -15,3 +15,5 @@ MonoBehaviour:
   RegisteredScreens:
   - {fileID: 2926265748437537160, guid: 9f6ee12b6b33bbe47bc4d4c720605d68, type: 3}
   - {fileID: 1812639393449408878, guid: 4f8db5581a0c8c145865db3b8b8b007d, type: 3}
+  - {fileID: 5306404921185453415, guid: a934493bf19d20940b0ad872643aa259, type: 3}
+  - {fileID: 3498746539084532032, guid: 77a44f584e3f8474da11fc92c4c1dcb0, type: 3}
