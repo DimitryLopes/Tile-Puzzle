@@ -20,6 +20,8 @@ public class EventManager : MonoBehaviour
     public static UnityEvent<IScreen> OnScreenBeforeHideEvent = new UnityEvent<IScreen>();
     public static UnityEvent<IScreen> OnScreenBeforeShowEvent = new UnityEvent<IScreen>();
 
+    public static UnityEvent OnFloatingPiecesAnimationFinished = new UnityEvent();
+
     public static UnityEvent<string> OnGameStarted = new UnityEvent<string>();
     public static UnityEvent<bool> OnGameOver = new UnityEvent<bool>();
 

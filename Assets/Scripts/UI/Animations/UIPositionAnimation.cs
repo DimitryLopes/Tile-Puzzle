@@ -44,10 +44,10 @@ public class UIPositionAnimation : UIAnimation
         {
             rectTransform.anchoredPosition = startPosition;
             if (!startFromSetPosition)
-                tween = target.LeanMoveLocal(endPos, duration);
+                tween = LeanTween.move(rectTransform, endPos, duration);
             else
-                tween = target.LeanMoveLocal(endPosition, duration);
-                return;
+                tween = LeanTween.move(rectTransform, endPosition, duration);
+            return;
         }
 
         tween = LeanTween.value(0f, 1f, duration).setOnUpdate(ArchMovement);

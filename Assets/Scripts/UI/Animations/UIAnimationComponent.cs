@@ -23,6 +23,7 @@ public class UIAnimationComponent : MonoBehaviour
 
     public bool AffectedByGetComponent => affectedByGetComponent;
     public GameObject AnimationTarget => animationTarget;
+
     private UIAnimationManager animationManager;
     private UIAnimationManager AnimationManager
     {
@@ -42,7 +43,6 @@ public class UIAnimationComponent : MonoBehaviour
             animationTarget = gameObject;
     }
 
-    
     public void PlayInAnimations(Action onComplete, bool debug = false)
     {
         if (activateOnShow && !animationTarget.activeSelf)
