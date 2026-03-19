@@ -28,7 +28,10 @@ public class UIFloatingPiecesManager : MonoBehaviour
     private void Start()
     {
         EventManager.OnScreenAfterShowEvent.AddListener(OnScreenAfterShow);
-        lastPiece.SetAsLast(OnPieceFinishMoving);
+        EventManager.OnPuzzleShuffled.AddListener(OnPuzzleShuffled);
+        EventManager.OnGameOver.AddListener(OnGameOver);
+        EventManager.OnBoardSelected.AddListener(OnBoardSelected);
+        /*lastPiece.SetAsLast(OnPieceFinishMoving);*/
     }
 
     private void OnScreenAfterShow(IScreen screen)
@@ -37,26 +40,21 @@ public class UIFloatingPiecesManager : MonoBehaviour
         switch (type)
         {
             case Type t when t == typeof(MainMenuScreen):
-                foreach(var piece in floatingPieces)
+                foreach (var piece in floatingPieces)
                 {
                     piece.MoveToMainMenu();
                 }
                 break;
             case Type t when t == typeof(GameModeScreen):
-                foreach(var piece in floatingPieces)
+                foreach (var piece in floatingPieces)
                 {
                     piece.MoveToGameMode();
                 }
                 break;
             case Type t when t == typeof(GameScreen):
-                for(int i = 0; i < floatingPieces.Count; i++)
+                foreach (var piece in floatingPieces)
                 {
-                    if(i == floatingPieces.Count - 1)
-                    {
-                        floatingPieces[i].PlayGameAnimation(OnPieceFinishMoving);
-                        break;
-                    }
-                    floatingPieces[i].PlayGameAnimation();
+                    piece.PlayGameAnimation();
                 }
                 break;
         }
@@ -64,7 +62,51 @@ public class UIFloatingPiecesManager : MonoBehaviour
 
     private void OnPieceFinishMoving()
     {
+        foreach(var piece in floatingPieces)
+        {
+            piece.Deactivate();
+        }
         EventManager.OnFloatingPiecesAnimationFinished.Invoke();
+    }
+
+    public void OnBoardSelected(Board image)
+    {
+        for (int i = 0; i < floatingPieces.Count; i++)
+        {
+            var piece = floatingPieces[i];
+            var sprite = AssetService.GetPuzzleSprite(image.ToString(), i);
+            piece.SetImage(sprite);
+        }
+    }
+
+    private void OnPuzzleShuffled(PuzzlePiece[] puzzlePieces)
+    {
+        for(int i = 0; i < floatingPieces.Count; i++)
+        {
+            var piece = floatingPieces[i];
+            var puzzlePiece = puzzlePieces[i];
+            var targetPosition = new Vector2(puzzlePiece.RectTransform.anchoredPosition.x - 300,
+                puzzlePiece.RectTransform.anchoredPosition.y + 300);
+
+            if (i == floatingPieces.Count - 1)
+            {
+                LeanTween.move(piece.Rect, targetPosition, pieceMoveDelay * i)
+                    .setOnComplete(OnPieceFinishMoving)
+                    .setEase(LeanTweenType.easeOutQuart);
+                return;
+            }
+            LeanTween.move(piece.Rect, targetPosition, pieceMoveDelay * i)
+                    .setEase(LeanTweenType.easeOutQuart);
+        }
+    }
+
+    private void OnGameOver(bool win)
+    {
+        foreach(var piece in floatingPieces)
+        {
+            piece.Activate();
+            piece.MoveToMainMenu();
+        }
     }
 }
 

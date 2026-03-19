@@ -1,96 +1,66 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIFloatingPiece : MonoBehaviour
+public class UIFloatingPiece : Activateable
 {
     [SerializeField]
     private RectTransform rectTransform;
-    [SerializeField]
-    private Vector2 mainMenuPosition;
-    [SerializeField]
-    private Vector2 gameModePosition;
     [SerializeField]
     private UIAnimationComponent idleAnimation;
     [SerializeField]
     private UIAnimationComponent gameAnimation;
     [SerializeField]
-    private float movementSpeed;
+    private UIAnimationComponent gameModeAnimation;
+    [SerializeField]
+    private UIAnimationComponent mainMenuAnimation;
+    [SerializeField]
+    private Image image;
 
-    private Vector2 targetPosition;
-    private bool isMoving = false;
-    private Action onFinishMoving;
+    public RectTransform Rect => rectTransform;
+    /*private Action onFinishMoving;*/
 
     public void Start()
     {
         MoveToMainMenu();
         PlayIdle();
+        Activate();
     }
 
-    public void SetAsLast(Action onFinishMoving)
+    /*public void SetAsLast(Action onFinishMoving)
     {
         this.onFinishMoving = onFinishMoving;
-    }
+    }*/
 
     public void MoveToMainMenu()
     {
-        Move(mainMenuPosition);
+        mainMenuAnimation.PlayInAnimations(PlayIdle);
     }
 
     public void MoveToGameMode()
     {
-        Move(gameModePosition);
+        gameModeAnimation.PlayInAnimations(PlayIdle);
     }
 
-    private void Move(Vector2 position, float delay = 0)
+    /*private void OnAnimationFinish()
     {
-        if (delay > 0)
-        {
-            StartCoroutine(MoveWithDelay(position, delay));
-            return;
-        }
-        targetPosition = position;
-        isMoving = true;
-    }
-
-    IEnumerator MoveWithDelay(Vector2 position, float delay)
-    {
-        targetPosition = position;
-        yield return new WaitForSeconds(delay);
-        isMoving = true;
-    }
-
-    private void Update()
-    {
-        if (!isMoving) return;
-
-        rectTransform.anchoredPosition = Vector2.MoveTowards(
-            rectTransform.anchoredPosition,
-            targetPosition,
-            movementSpeed * Time.deltaTime
-        );
-
-        if (Vector2.Distance(rectTransform.anchoredPosition, targetPosition) < 0.01f)
-        {
-            rectTransform.anchoredPosition = targetPosition;
-            isMoving = false;
-            onFinishMoving?.Invoke();
-        }
-    }
+        onFinishMoving?.Invoke();
+    }*/
 
     private void PlayIdle()
     {
         idleAnimation.PlayInAnimations();
     }
 
-    public void PlayGameAnimation(Action onFinishAction)
-    {
-        gameAnimation.PlayInAnimations(onFinishAction);
-    }
-
     public void PlayGameAnimation()
     {
         gameAnimation.PlayInAnimations();
+    }
+
+    public void SetImage(Sprite sprite)
+    {
+        image.sprite = sprite;
     }
 }
 

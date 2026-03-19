@@ -21,6 +21,8 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
     public int Index { get; private set; }
     public int DefaultIndex { get; private set; }
     public bool IsMouseOver { get; private set; }
+    
+    public RectTransform RectTransform => transform as RectTransform;
 
     private bool isEmpty = false;
     private Canvas canvas;
@@ -40,9 +42,14 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
         isEmpty = false;
     }
 
+    public void ToggleImage(bool toggle)
+    {
+        puzzleImage.gameObject.SetActive(toggle);
+    }
+
     public void SetAsEmpty()
     {
-        puzzleImage.gameObject.SetActive(false);
+        ToggleImage(false);
         emptyFrame.gameObject.SetActive(true);
         isEmpty = true;
     }

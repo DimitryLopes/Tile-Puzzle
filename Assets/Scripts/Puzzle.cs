@@ -38,13 +38,23 @@ public class Puzzle : MonoBehaviour
                 piece.SetIndex(i);
                 Sprite sprite = AssetService.GetPuzzleSprite(puzzleName, piece.DefaultIndex);
                 piece.Setup(sprite, canvas, OnPieceEndDrag);
+                piece.ToggleImage(false);
+                piece.SetInteractable(false);
             }
             isGameOver = CheckGameOver();
         } while (isGameOver);
 
-
+        EventManager.OnPuzzleShuffled.Invoke(puzzlePieces);
         EmptyPiece.SetAsEmpty();
-        UpdateInteractables();
+    }
+
+    public void ShowPieces()
+    {
+        foreach(PuzzlePiece piece in puzzlePieces)
+        {
+            if(piece != EmptyPiece)
+                piece.ToggleImage(true);
+        }
     }
 
     private Vector2 GetPiecePosition(int index)
@@ -56,7 +66,7 @@ public class Puzzle : MonoBehaviour
         return new Vector2(X, Y);
     }
 
-    private void UpdateInteractables()
+    public void UpdateInteractables()
     {
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
