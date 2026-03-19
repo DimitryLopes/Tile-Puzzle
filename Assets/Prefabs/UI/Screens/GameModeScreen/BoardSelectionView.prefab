@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3667142304079428237}
-  - component: {fileID: 3709006117142311990}
   - component: {fileID: 2779673973352730376}
   - component: {fileID: 166372593246190147}
+  - component: {fileID: 6259440159957526451}
   m_Layer: 0
-  m_Name: EventView
+  m_Name: BoardSelectionView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,30 +39,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 210, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3709006117142311990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2397666716392266455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 422f4eb2f862db14d8c78763ee782f0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  onActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  eventImage: {fileID: 1202113337461777038}
-  eventName: {fileID: 6939650081860530293}
-  checkButton: {fileID: 7102023665150867178}
-  checkmark: {fileID: 5029458686015914432}
 --- !u!114 &2779673973352730376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &166372593246190147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +81,28 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6259440159957526451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2397666716392266455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5314f056e39074a44bc5bd708a9194ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  onActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  button: {fileID: 7102023665150867178}
+  checkmark: {fileID: 5029458686015914432}
+  boardName: {fileID: 6939650081860530293}
+  boardImage: {fileID: 1202113337461777038}
 --- !u!1 &5029458686015914432
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 4413490601994908206}
   - component: {fileID: 1202113337461777038}
   m_Layer: 0
-  m_Name: EventIcon
+  m_Name: BoardIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 498916237, guid: 8757a28b96de93944a4eccafe87e21f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8002e8a5bae46a648aa9a6f1559983a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Invasion
+  m_text: Gift
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4a356bd14dc2f14ca8ab8a07be36c5a, type: 2}
   m_sharedMaterial: {fileID: -6133898797991529258, guid: d4a356bd14dc2f14ca8ab8a07be36c5a, type: 2}

@@ -19,6 +19,8 @@ public class UIGameEventSelection : Activateable
     private EventID id;
     private Action<EventID> onButtonClick;
 
+    public bool IsSelected => checkmark.gameObject.activeSelf;
+
     public void Setup(EventData data, Action<EventID> onClick)
     {
         id = data.eventID;
@@ -26,18 +28,28 @@ public class UIGameEventSelection : Activateable
         eventImage.sprite = data.eventIcon;
         checkButton.onClick.RemoveAllListeners();
         checkButton.onClick.AddListener(OnButtonClick);
-        ToggleCheckmark(data.IsActive);
+        ToggleCheckmark(data.gameEvent.IsEventActive);
         onButtonClick = onClick;
     }
 
     private void OnButtonClick()
     {
-        onButtonClick?.Invoke(id);
         ToggleCheckmark(!checkmark.gameObject.activeSelf);
+        onButtonClick?.Invoke(id);
+    }
+
+    public void ForceToggle()
+    {
+        OnButtonClick();
     }
 
     private void ToggleCheckmark(bool toggle)
     {
         checkmark.SetActive(toggle);
+    }
+
+    public void ToggleInteraction(bool toggle)
+    {
+        checkButton.interactable = toggle;
     }
 }

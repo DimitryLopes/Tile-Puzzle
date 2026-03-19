@@ -17,11 +17,13 @@ public class GameManager : MonoBehaviour
     private bool isEventActive = false;
     private float eventTimer = 10f;
     private GameEvent currentEvent = null;
-    
+    private Board currentBoard;
+
     private void Start()
     {
         EventManager.OnGameOver.AddListener(OnGameOver);
         EventManager.OnEventEnded.AddListener(OnEventEnded);
+        SelectBoard(Board.Gift);
         ShowMainMenu();
     }
 
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
         var availableEvents = new List<GameEvent>();
         foreach (var e in eventDatas)
         {
-            if (e.IsActive)
+            if (e.gameEvent.IsEventActive)
             {
                 availableEvents.Add(e.gameEvent);
             }
@@ -74,8 +76,16 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameSelectionScreen()
     {
-        var controller = new GameModeScreenController(eventDatas, OnEventToggled, StartGame, ShowMainMenu);
+        var controller = new GameModeScreenController(eventDatas,
+            OnEventToggled, StartGame, ShowMainMenu, SelectBoard,
+            currentBoard);
         ScreenManager.Instance.Show<GameModeScreen>(controller);
+    }
+
+    private void SelectBoard(Board board)
+    {
+        currentBoard = board;
+        EventManager.OnBoardSelected.Invoke(board);
     }
 
     private void OnEventToggled(EventID id)
@@ -85,7 +95,7 @@ public class GameManager : MonoBehaviour
             var data = eventDatas[i];
             if (data.eventID != id) continue;
 
-            data.IsActive = !data.IsActive;
+            data.gameEvent.ToggleEvent(!data.gameEvent);
             eventDatas[i] = data;
             return;
         }
@@ -96,7 +106,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         isPlaying = true;
-        var controller = new GameScreenController("Gift", canvas);
+        var controller = new GameScreenController(currentBoard.ToString(), canvas);
         ScreenManager.Instance.Show<GameScreen>(controller);
     }
 
@@ -122,6 +132,4 @@ public struct EventData
     public Sprite eventIcon;
     [SerializeField]
     public GameEvent gameEvent;
-
-    public bool IsActive { get; set; }
 }
