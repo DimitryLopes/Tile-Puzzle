@@ -19,10 +19,13 @@ public class GameManager : MonoBehaviour
     private GameEvent currentEvent = null;
     private Board currentBoard;
 
+    private GameEvent ClassicMode => eventDatas[0].gameEvent;
+
     private void Start()
     {
         EventManager.OnGameOver.AddListener(OnGameOver);
         EventManager.OnEventEnded.AddListener(OnEventEnded);
+        EventManager.OnGameStarted.AddListener(OnGameStarted);
         SelectBoard(Board.Gift);
         ShowMainMenu();
     }
@@ -95,7 +98,7 @@ public class GameManager : MonoBehaviour
             var data = eventDatas[i];
             if (data.eventID != id) continue;
 
-            data.gameEvent.ToggleEvent(!data.gameEvent);
+            data.gameEvent.ToggleEvent(!data.gameEvent.IsEventActive);
             eventDatas[i] = data;
             return;
         }
@@ -110,6 +113,15 @@ public class GameManager : MonoBehaviour
         ScreenManager.Instance.Show<GameScreen>(controller);
     }
 
+    private void OnGameStarted()
+    {
+        if (ClassicMode.IsEventActive)
+        {
+            isEventActive = true;
+            ClassicMode.StartEvent();
+            currentEvent = ClassicMode;
+        }
+    }
     private void OnGameOver(bool isVictory)
     {
         isPlaying = false;

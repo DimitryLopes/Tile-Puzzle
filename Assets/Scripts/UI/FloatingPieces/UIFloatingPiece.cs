@@ -19,19 +19,12 @@ public class UIFloatingPiece : Activateable
     private Image image;
 
     public RectTransform Rect => rectTransform;
-    /*private Action onFinishMoving;*/
 
     public void Start()
     {
-        MoveToMainMenu();
         PlayIdle();
         Activate();
     }
-
-    /*public void SetAsLast(Action onFinishMoving)
-    {
-        this.onFinishMoving = onFinishMoving;
-    }*/
 
     public void MoveToMainMenu()
     {
@@ -42,11 +35,6 @@ public class UIFloatingPiece : Activateable
     {
         gameModeAnimation.PlayInAnimations(PlayIdle);
     }
-
-    /*private void OnAnimationFinish()
-    {
-        onFinishMoving?.Invoke();
-    }*/
 
     private void PlayIdle()
     {

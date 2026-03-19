@@ -14,12 +14,13 @@ public class GameScreen : UIScreen<GameScreenController>
     {
         base.OnAfterShow();
         EventManager.OnFloatingPiecesAnimationFinished.AddListener(OnFloatingPiecesAnimationFinished);
-        puzzle.StartGame(Controller.PuzzleName, Controller.Canvas);
+        puzzle.SetupGame(Controller.PuzzleName, Controller.Canvas);
     }
 
     private void OnFloatingPiecesAnimationFinished()
     {
         puzzle.ShowPieces();
         puzzle.UpdateInteractables();
+        puzzle.StartGame();
     }
 }

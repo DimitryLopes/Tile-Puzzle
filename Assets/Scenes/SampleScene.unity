@@ -767,7 +767,7 @@ MonoBehaviour:
   victoryMessage: You win!
   defeatMessage: Time died, so did the puzzle, you lost
   eventContainer: {fileID: 1005650863}
-  timeLimit: 182
+  timeLimit: 22
   timerText: {fileID: 921368971}
 --- !u!1001 &1117442708
 PrefabInstance:
@@ -1105,7 +1105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 249837408740048161, guid: d239e9e839f7f4a458d79c769f690228, type: 3}
       propertyPath: managedReferences[351821038957887488].endPosition.x
-      value: -126
+      value: -392.35
       objectReference: {fileID: 0}
     - target: {fileID: 249837408740048161, guid: d239e9e839f7f4a458d79c769f690228, type: 3}
       propertyPath: managedReferences[351821038957887488].endPosition.y

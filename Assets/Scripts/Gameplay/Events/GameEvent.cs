@@ -27,7 +27,7 @@ public abstract class GameEvent : MonoBehaviour
         EventManager.OnGameStarted.AddListener(OnGameStarted);
     }
 
-    private void OnGameStarted(string args)
+    private void OnGameStarted()
     {
         eventContainer.SetActive(IsEventActive);
     }

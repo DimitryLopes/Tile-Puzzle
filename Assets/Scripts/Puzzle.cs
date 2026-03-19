@@ -11,7 +11,7 @@ public class Puzzle : MonoBehaviour
     private bool isFirstGame = true;
     private PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
 
-    public void StartGame(string puzzleName, Canvas canvas)
+    public void SetupGame(string puzzleName, Canvas canvas)
     {
         if (isFirstGame)
         {
@@ -46,6 +46,13 @@ public class Puzzle : MonoBehaviour
 
         EventManager.OnPuzzleShuffled.Invoke(puzzlePieces);
         EmptyPiece.SetAsEmpty();
+    }
+
+    public void StartGame()
+    {
+        ShowPieces();
+        UpdateInteractables();
+        EventManager.OnGameStarted.Invoke();
     }
 
     public void ShowPieces()
