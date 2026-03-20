@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnGameEventEnded.AddListener(OnGameEventEnded);
         EventManager.OnGameStarted.AddListener(OnGameStarted);
         SelectBoard(Board.Gift);
+        AudioManager.Instance.PlayBGM(AudioKey.BGM_main_menu);
         ShowMainMenu();
     }
 
@@ -93,8 +94,14 @@ public class GameManager : MonoBehaviour
 
     private void ShowMainMenu()
     {
-        var controller = new MainMenuScreenController(ShowGameSelectionScreen, ExitGame);
+        var controller = new MainMenuScreenController(ShowGameSelectionScreen, ExitGame, ShowOptionsScreen);
         ScreenManager.Instance.Show<MainMenuScreen>(controller);
+    }
+
+    private void ShowOptionsScreen()
+    {
+        var controller = new OptionsScreenController(ShowMainMenu);
+        ScreenManager.Instance.Show<OptionsScreen>(controller);
     }
 
     public void ShowGameSelectionScreen()

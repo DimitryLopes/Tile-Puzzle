@@ -1,7 +1,8 @@
 public enum AudioKey 
 {
     BGM_main_menu,
-    BGM_in_game,
-    SFX_russel_damaged,
-    SFX_piece_moved,
+    UI_click,
+    UI_piece_move,
+    event_ship_destroyed,
+    event_chest_opened
 }

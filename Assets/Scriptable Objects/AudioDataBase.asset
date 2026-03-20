@@ -14,14 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioInfoList:
   - audioKey: 0
-    audioClip: {fileID: 8300000, guid: f4976f941cce545199beafffc22437ad, type: 3}
+    audioClip: {fileID: 8300000, guid: 88d27967693517045b5d1d760666b927, type: 3}
     origin: 0
-  - audioKey: 1
-    audioClip: {fileID: 8300000, guid: c465361af262f47928b12e65fd55e2bd, type: 3}
-    origin: 0
-  - audioKey: 2
-    audioClip: {fileID: 8300000, guid: 1f7659d04dfebb941ae8910d5652eeee, type: 3}
-    origin: 2
-  - audioKey: 3
-    audioClip: {fileID: 8300000, guid: 24844bbb96c79814aaf9bfc7ee57c5f0, type: 3}
-    origin: 2
