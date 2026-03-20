@@ -2014,7 +2014,7 @@ MonoBehaviour:
   rectTransform: {fileID: 1761055366}
   speed: 50
   shipSize: 200
-  animationDistance: 200
+  animationDistance: 2000
   animationDuration: 1
 --- !u!1 &1852434840
 GameObject:

@@ -18,6 +18,8 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
         base.OnBeforeShow();
         playAgainButton.onClick.AddListener(OnPlayAgainButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
+        subtitleText.text = Controller.SubtitleText;
+        titleText.text = Controller.IsWin ? Constants.Screens.GAME_OVER_SCREEN_VICTORY_TEXT : Constants.Screens.GAME_OVER_SCREEN_DEFEAT_TEXT;
     }
 
     protected override void OnAfterHide()

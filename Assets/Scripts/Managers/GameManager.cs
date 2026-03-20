@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         isEventActive = false;
         if (isWin) return;
-        EventManager.OnGameOver.Invoke(isWin);
+        EventManager.OnGameOver.Invoke(evt, isWin);
     }
 
     private void ShowMainMenu()
@@ -141,10 +141,16 @@ public class GameManager : MonoBehaviour
             StartEvent(ClassicMode);
         }
     }
-    private void OnGameOver(bool isVictory)
+
+    private void OnGameOver(GameEvent gameEvent, bool isVictory)
     {
         isPlaying = false;
-        var controller = new GameOverScreenController(isVictory, StartGame, ExitGame);
+        GameOverScreenController controller;
+        if (isVictory)
+        {
+            controller = new GameOverScreenController(isVictory, StartGame, ExitGame, string.Empty);
+        }
+        controller = new GameOverScreenController(isVictory, StartGame, ExitGame, gameEvent.DefeatMessage);
         ScreenManager.Instance.Show<GameOverScreen>(controller);
     }
 

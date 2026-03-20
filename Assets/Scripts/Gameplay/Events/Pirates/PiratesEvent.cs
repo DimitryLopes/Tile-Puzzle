@@ -44,6 +44,7 @@ public class PiratesEvent : GameEvent
 
     private void OnChestOpened()
     {
+        isRunning = false;
         pirateShip.DestroyShip(OnShipDestroyed);        
     }
 
@@ -53,7 +54,7 @@ public class PiratesEvent : GameEvent
         //this avoids choosing the empty space
         var puzzle = GameManager.Instance.Puzzle;
         PuzzlePiece piece = puzzle.PuzzlePieces[randomIndex];
-        treasureChest.SetupChest(piece.RectTransform.position, randomIndex, puzzle.PiecesContainer);
+        treasureChest.SetupChest(piece.RectTransform.position, piece.Index, puzzle.PiecesContainer);
     }
 
     private void PositionShip()
@@ -71,7 +72,6 @@ public class PiratesEvent : GameEvent
 
     private void OnShipDestroyed()
     {
-        if (!isRunning) return;
         isRunning = false;
         EndEvent(true);
     }

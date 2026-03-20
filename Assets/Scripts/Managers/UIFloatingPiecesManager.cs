@@ -11,8 +11,6 @@ public class UIFloatingPiecesManager : MonoBehaviour
 
     public static UIFloatingPiecesManager Instance { get; private set; }
 
-    private UIFloatingPiece lastPiece => floatingPieces[^1];
-
     private void Awake()
     {
         if (Instance == null)
@@ -31,7 +29,6 @@ public class UIFloatingPiecesManager : MonoBehaviour
         EventManager.OnPuzzleShuffled.AddListener(OnPuzzleShuffled);
         EventManager.OnGameOver.AddListener(OnGameOver);
         EventManager.OnBoardSelected.AddListener(OnBoardSelected);
-        /*lastPiece.SetAsLast(OnPieceFinishMoving);*/
     }
 
     private void OnScreenAfterShow(IScreen screen)
@@ -100,7 +97,7 @@ public class UIFloatingPiecesManager : MonoBehaviour
         }
     }
 
-    private void OnGameOver(bool win)
+    private void OnGameOver(GameEvent evt, bool win)
     {
         foreach(var piece in floatingPieces)
         {

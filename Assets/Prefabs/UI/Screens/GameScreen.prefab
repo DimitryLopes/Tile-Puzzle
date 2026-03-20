@@ -517,11 +517,11 @@ MonoBehaviour:
   - rid: 351821087698321411
   componentPriority: 0
   animationTarget: {fileID: 1126233675155037662}
-  deactivateOnHide: 1
+  deactivateOnHide: 0
   activateOnShow: 1
   playAllAtOnce: 0
   affectedByGetComponent: 0
-  overrideOtherAnimationsWhenPlayed: 0
+  overrideOtherAnimationsWhenPlayed: 1
   references:
     version: 2
     RefIds:

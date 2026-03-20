@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AnnouncementText : MonoBehaviour
 {
@@ -32,10 +31,17 @@ public class AnnouncementText : MonoBehaviour
             text.text += message[i];
             yield return new WaitForSeconds(letterDelay);
         }
+        HideText();
     }
 
     public void HideText()
     {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+
+        fadeAnimation.SetOutDelay(text.text.Length / 10);
         fadeAnimation.PlayOutAnimations();
     }
 }

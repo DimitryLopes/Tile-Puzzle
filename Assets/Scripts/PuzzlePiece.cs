@@ -138,6 +138,7 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(!puzzleImage.raycastTarget) return;
         IsMouseOver = true;
         UpdateDragFrame();
     }

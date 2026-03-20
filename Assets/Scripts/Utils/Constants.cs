@@ -19,4 +19,10 @@ public static class Constants
     {
         public const float DEFAULT_OBJECT_ROTATION = 1200;
     }
+
+    public class Screens
+    {
+        public const string GAME_OVER_SCREEN_VICTORY_TEXT = "Victory!";
+        public const string GAME_OVER_SCREEN_DEFEAT_TEXT = "Game over";
+    }
 }

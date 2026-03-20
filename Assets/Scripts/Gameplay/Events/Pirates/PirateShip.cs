@@ -53,6 +53,6 @@ public class PirateShip : Activateable
         LeanTween.move(rectTransform, finalPosition, animationDuration)
             .setOnComplete(onMovementFinish);
 
-        rectTransform.LeanRotateZ(Constants.Events.DEFAULT_OBJECT_ROTATION, animationDuration);
+        rectTransform.LeanRotateZ(-Constants.Events.DEFAULT_OBJECT_ROTATION, animationDuration);
     }
 }

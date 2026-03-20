@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIFloatingPiece : Activateable
+public class UIFloatingPiece : Activateable, IDragHandler, IEndDragHandler, IPointerEnterHandler,
 {
     [SerializeField]
     private RectTransform rectTransform;
@@ -17,6 +18,8 @@ public class UIFloatingPiece : Activateable
     private UIAnimationComponent mainMenuAnimation;
     [SerializeField]
     private Image image;
+    [SerializeField]
+    private Canvas canvas;
 
     public RectTransform Rect => rectTransform;
 
@@ -49,6 +52,20 @@ public class UIFloatingPiece : Activateable
     public void SetImage(Sprite sprite)
     {
         image.sprite = sprite;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        Vector3 worldPoint;
+
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            canvas.worldCamera,
+            out worldPoint
+        );
+
+        imageRectTransform.position = worldPoint;
     }
 }
 
