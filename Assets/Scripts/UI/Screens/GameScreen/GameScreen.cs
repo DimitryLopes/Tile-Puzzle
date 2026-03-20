@@ -11,6 +11,7 @@ public class GameScreen : UIScreen<GameScreenController>
     protected override void OnBeforeShow()
     {
         base.OnBeforeShow();
+        eventText.gameObject.SetActive(false);
         EventManager.OnFloatingPiecesAnimationFinished.AddListener(OnFloatingPiecesAnimationFinished);
         EventManager.OnGameEventStarted.AddListener(OnGameEventStarted);
         EventManager.OnGameEventEnded.AddListener(OnGameEventEnded);

@@ -45,7 +45,7 @@ public class AlienShip : Activateable
         rectTransform.rotation = Quaternion.identity;
     }
 
-    private void Update()
+    public void UpdateShip()
     {
         rectTransform.anchoredPosition = Vector2.MoveTowards(
             rectTransform.anchoredPosition,

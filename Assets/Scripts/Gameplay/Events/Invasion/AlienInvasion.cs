@@ -24,12 +24,17 @@ public class AlienInvasion : GameEvent
 
     public override void EndEvent(bool isWin)
     {
-        if (isWin)
+
+        foreach (var ship in alienShips)
         {
-            foreach (var ship in alienShips)
+            if (isWin)
             {
                 if (!ship.IsActive) continue;
                 ship.DestroyShip();
+            }
+            else
+            {
+                ship.Deactivate();
             }
         }
 
@@ -49,6 +54,14 @@ public class AlienInvasion : GameEvent
         {
             GetAvailableShip();
             spawnTimer = spawnInterval;
+        }
+
+        foreach(AlienShip ship in alienShips)
+        {
+            if (ship.IsActive)
+            {
+                ship.UpdateShip();
+            }
         }
     }
 

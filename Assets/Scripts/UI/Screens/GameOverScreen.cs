@@ -11,6 +11,8 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
     [SerializeField]
     private Button playAgainButton;
     [SerializeField]
+    private Button mainMenuButton;
+    [SerializeField]
     private Button exitButton;
 
     protected override void OnBeforeShow()
@@ -37,6 +39,12 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
     private void OnPlayAgainButtonClicked()
     {
         Controller.OnPlayButtonClicked.Invoke();
+    }
+
+    private void OnMainMenuButtonClicked()
+    {
+
+        Controller.OnMainMenuButtonClicked.Invoke();
     }
 }
 

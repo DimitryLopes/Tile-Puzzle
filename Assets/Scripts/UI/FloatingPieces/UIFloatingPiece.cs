@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIFloatingPiece : Activateable, IDragHandler, IEndDragHandler, IPointerEnterHandler,
+public class UIFloatingPiece : Activateable, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private RectTransform rectTransform;
@@ -17,11 +15,14 @@ public class UIFloatingPiece : Activateable, IDragHandler, IEndDragHandler, IPoi
     [SerializeField]
     private UIAnimationComponent mainMenuAnimation;
     [SerializeField]
+    private UIAnimationComponent frameAnimation;
+    [SerializeField]
     private Image image;
     [SerializeField]
     private Canvas canvas;
 
     public RectTransform Rect => rectTransform;
+
 
     public void Start()
     {
@@ -65,7 +66,17 @@ public class UIFloatingPiece : Activateable, IDragHandler, IEndDragHandler, IPoi
             out worldPoint
         );
 
-        imageRectTransform.position = worldPoint;
+        transform.position = worldPoint;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        frameAnimation.PlayInAnimations();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        frameAnimation.PlayOutAnimations();
     }
 }
 

@@ -147,10 +147,11 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
         GameOverScreenController controller;
         if (isVictory)
-        {
-            controller = new GameOverScreenController(isVictory, StartGame, ExitGame, string.Empty);
-        }
-        controller = new GameOverScreenController(isVictory, StartGame, ExitGame, gameEvent.DefeatMessage);
+            controller = new GameOverScreenController(isVictory,
+                StartGame, ExitGame, ShowMainMenu, string.Empty);
+        else
+            controller = new GameOverScreenController(isVictory,
+                StartGame, ExitGame, ShowMainMenu, gameEvent.DefeatMessage);
         ScreenManager.Instance.Show<GameOverScreen>(controller);
     }
 
