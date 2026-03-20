@@ -7,9 +7,13 @@ public class Puzzle : MonoBehaviour
     private PuzzlePiece[] puzzlePieces;
     [SerializeField]
     private RectTransform emptyPieceRect;
+    [SerializeField]
+    private Transform piecesContainer;
 
     private bool isFirstGame = true;
-    private PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
+    public PuzzlePiece EmptyPiece => puzzlePieces[puzzlePieces.Length - 1];
+    public PuzzlePiece[] PuzzlePieces => puzzlePieces;
+    public Transform PiecesContainer => piecesContainer;
 
     public void SetupGame(string puzzleName, Canvas canvas)
     {
@@ -52,7 +56,7 @@ public class Puzzle : MonoBehaviour
     {
         ShowPieces();
         UpdateInteractables();
-        EventManager.OnGameStarted.Invoke();
+        EventManager.OnGameStarted.Invoke(this);
     }
 
     public void ShowPieces()

@@ -81,7 +81,7 @@ MonoBehaviour:
   inAnimations: []
   outAnimations: []
   componentPriority: 0
-  animationTarget: {fileID: 0}
+  animationTarget: {fileID: 2926265748437537160}
   deactivateOnHide: 1
   activateOnShow: 1
   playAllAtOnce: 0
@@ -310,6 +310,7 @@ MonoBehaviour:
   - {fileID: 8031559776335272884}
   - {fileID: 6203802660146395317}
   emptyPieceRect: {fileID: 4560776905629763539}
+  piecesContainer: {fileID: 4751771561184367102}
 --- !u!1 &6091107367141374001
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
     [SerializeField]
     private RectTransform imageRectTransform;
     [SerializeField]
+    private Image dragFrame;
+    [SerializeField]
     private Image emptyFrame;
     [SerializeField]
     private Image puzzleImage;
@@ -71,13 +73,19 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
             .setEase(LeanTweenType.easeOutQuart);
 
         LeanTween.move(targetRect, holderPosition, animationDuration)
-            .setEase(LeanTweenType.easeOutQuart);
+            .setEase(LeanTweenType.easeOutQuart)
+            .setOnComplete(OnFinishMove);
 
         var indexHolder = Index;
         Index = target.Index;
         target.SetIndex(indexHolder);
 
         ResetImagePosition();
+    }
+
+    private void OnFinishMove()
+    {
+        EventManager.OnPieceMoved.Invoke();
     }
 
     public void ResetImagePosition()
@@ -95,9 +103,9 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
         puzzleImage.raycastTarget = value;
     }
 
-    private void UpdateEmptyFrame()
+    private void UpdateDragFrame()
     {
-        if (!isEmpty) return;
+        if (isEmpty) return;
 
         if (IsMouseOver)
         {
@@ -131,13 +139,13 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IEndDragHandler, IPointe
     public void OnPointerEnter(PointerEventData eventData)
     {
         IsMouseOver = true;
-        UpdateEmptyFrame();
+        UpdateDragFrame();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         IsMouseOver = false;
-        UpdateEmptyFrame();
+        UpdateDragFrame();
     }
 
 }

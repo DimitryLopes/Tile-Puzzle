@@ -54,11 +54,11 @@ MonoBehaviour:
   - rid: 351820969017868290
   componentPriority: 0
   animationTarget: {fileID: 7634675124150329971}
-  deactivateOnHide: 0
-  activateOnShow: 0
+  deactivateOnHide: 1
+  activateOnShow: 1
   playAllAtOnce: 0
   affectedByGetComponent: 0
-  overrideOtherAnimationsWhenPlayed: 0
+  overrideOtherAnimationsWhenPlayed: 1
   references:
     version: 2
     RefIds:
@@ -142,6 +142,81 @@ MonoBehaviour:
         targetImage: {fileID: 5993676007748734161}
         targetText: {fileID: 0}
         targetColor: {r: 1, g: 1, b: 1, a: 0}
+--- !u!1 &2415613755526746088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6936410345673644063}
+  - component: {fileID: 6947994854788937768}
+  - component: {fileID: 6663041000994714573}
+  m_Layer: 0
+  m_Name: EmptyFrame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &6936410345673644063
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415613755526746088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5678079933123312367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 180}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6947994854788937768
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415613755526746088}
+  m_CullTransparentMesh: 1
+--- !u!114 &6663041000994714573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415613755526746088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c44b072f41394c44c927579bd5a34510, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3514502095634210661
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +374,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5548607446516922869}
+  - {fileID: 6936410345673644063}
   - {fileID: 7150815761599226940}
   - {fileID: 6175173004214153020}
   m_Father: {fileID: 0}
@@ -329,7 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageRectTransform: {fileID: 7150815761599226940}
-  emptyFrame: {fileID: 5993676007748734161}
+  dragFrame: {fileID: 5993676007748734161}
+  emptyFrame: {fileID: 6663041000994714573}
   puzzleImage: {fileID: 4257255676489104675}
   animationDuration: 0.3
   puzzleImageAnimation: {fileID: 31788833893193498}
@@ -346,7 +423,7 @@ GameObject:
   - component: {fileID: 8863910260293015040}
   - component: {fileID: 5993676007748734161}
   m_Layer: 0
-  m_Name: EmptyFrame
+  m_Name: DragFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,10 +443,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5678079933123312367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8863910260293015040
 CanvasRenderer:
@@ -392,14 +469,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37322173, g: 0.381132, b: 0.37544933, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c44b072f41394c44c927579bd5a34510, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

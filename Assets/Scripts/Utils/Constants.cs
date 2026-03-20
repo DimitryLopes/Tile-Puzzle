@@ -14,4 +14,9 @@ public static class Constants
         public const int PUZLLE_PIECE_STARTING_POSITION_Y = -105;
         public const int FLOATING_PIECE_OFFSET = 300;
     }
+
+    public class Events
+    {
+        public const float DEFAULT_OBJECT_ROTATION = 1200;
+    }
 }

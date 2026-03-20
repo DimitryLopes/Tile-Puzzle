@@ -1,7 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class GameScreen : UIScreen<GameScreenController>
 {
+    [SerializeField]
+    private TextMeshProUGUI eventText;
     [SerializeField]
     private Puzzle puzzle;
 

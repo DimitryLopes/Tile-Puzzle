@@ -19,7 +19,21 @@ public class GameManager : MonoBehaviour
     private GameEvent currentEvent = null;
     private Board currentBoard;
 
+    public static GameManager Instance { get; private set; }
+
     private GameEvent ClassicMode => eventDatas[0].gameEvent;
+    public Puzzle Puzzle { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -113,8 +127,9 @@ public class GameManager : MonoBehaviour
         ScreenManager.Instance.Show<GameScreen>(controller);
     }
 
-    private void OnGameStarted()
+    private void OnGameStarted(Puzzle puzzle)
     {
+        Puzzle = puzzle;
         if (ClassicMode.IsEventActive)
         {
             isEventActive = true;

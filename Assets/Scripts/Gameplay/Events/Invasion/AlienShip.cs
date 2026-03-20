@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +71,7 @@ public class AlienShip : Activateable
         LeanTween.move(rectTransform, finalPosition, animationDuration)
             .setOnComplete(Deactivate);
 
-        rectTransform.LeanRotateZ(1200, animationDuration);
+        rectTransform.LeanRotateZ(Constants.Events.DEFAULT_OBJECT_ROTATION, animationDuration);
     }
 
     public void OnPointerClick()

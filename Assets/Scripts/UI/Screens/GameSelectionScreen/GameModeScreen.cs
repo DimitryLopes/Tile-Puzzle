@@ -46,7 +46,6 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
             {
                 SelectBoard(selection);
             }
-
         }
 
         playButton.onClick.AddListener(Controller.OnPlayButtonClicked);

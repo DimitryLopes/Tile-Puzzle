@@ -24,9 +24,10 @@ public class EventManager : MonoBehaviour
 
     public static UnityEvent<Board> OnBoardSelected = new UnityEvent<Board>();
 
-    public static UnityEvent OnGameStarted = new UnityEvent();
+    public static UnityEvent<Puzzle> OnGameStarted = new UnityEvent<Puzzle>();
     public static UnityEvent<bool> OnGameOver = new UnityEvent<bool>();
     public static UnityEvent<PuzzlePiece[]> OnPuzzleShuffled = new UnityEvent<PuzzlePiece[]>();
     public static UnityEvent<bool> OnEventEnded = new UnityEvent<bool>();
+    public static UnityEvent OnPieceMoved = new UnityEvent();
 
 }
