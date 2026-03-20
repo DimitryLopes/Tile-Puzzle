@@ -33,7 +33,7 @@ public class AlienInvasion : GameEvent
             }
         }
 
-        EventManager.OnEventEnded.Invoke(isWin);
+        EventManager.OnGameEventEnded.Invoke(this, isWin);
     }
 
     public override void StartEvent()

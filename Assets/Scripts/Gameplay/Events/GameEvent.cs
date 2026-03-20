@@ -13,6 +13,10 @@ public abstract class GameEvent : MonoBehaviour
 
     public bool IsEventActive { get; private set; } = false;
 
+    public string StartMessage => startMessage;
+    public string VictoryMessage => victoryMessage;
+    public string DefeatMessage => defeatMessage;
+
     public abstract void StartEvent();
     public abstract void UpdateEvent();
     public abstract void EndEvent(bool isWin);

@@ -16,7 +16,7 @@ public class PiratesEvent : GameEvent
 
     public override void EndEvent(bool isWin)
     {
-        EventManager.OnEventEnded.Invoke(isWin);
+        EventManager.OnGameEventEnded.Invoke(this, isWin);
     }
 
     public override void StartEvent()

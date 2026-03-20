@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         EventManager.OnGameOver.AddListener(OnGameOver);
-        EventManager.OnEventEnded.AddListener(OnEventEnded);
+        EventManager.OnGameEventEnded.AddListener(OnGameEventEnded);
         EventManager.OnGameStarted.AddListener(OnGameStarted);
         SelectBoard(Board.Gift);
         ShowMainMenu();
@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
 
     private void SelectNewEvent()
     {
-        isEventActive = true;
         eventTimer = UnityEngine.Random.Range(minEventTimer, maxEventTimer);
         var availableEvents = new List<GameEvent>();
         foreach (var e in eventDatas)
@@ -74,11 +73,18 @@ public class GameManager : MonoBehaviour
             }
         }
         GameEvent evt = availableEvents.GetRandom();
-        evt.StartEvent();
-        currentEvent = evt;
+        StartEvent(evt);
     }
 
-    private void OnEventEnded(bool isWin)
+    private void StartEvent(GameEvent evt)
+    {
+        isEventActive = true;
+        evt.StartEvent();
+        currentEvent = evt;
+        EventManager.OnGameEventStarted.Invoke(evt);
+    }
+
+    private void OnGameEventEnded(GameEvent evt, bool isWin)
     {
         isEventActive = false;
         if (isWin) return;
@@ -132,9 +138,7 @@ public class GameManager : MonoBehaviour
         Puzzle = puzzle;
         if (ClassicMode.IsEventActive)
         {
-            isEventActive = true;
-            ClassicMode.StartEvent();
-            currentEvent = ClassicMode;
+            StartEvent(ClassicMode);
         }
     }
     private void OnGameOver(bool isVictory)
