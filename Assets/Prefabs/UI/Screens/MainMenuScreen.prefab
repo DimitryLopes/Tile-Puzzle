@@ -80,18 +80,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f1defea77c2d0438f65354bc73552c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inAnimations: []
-  outAnimations: []
+  inAnimations:
+  - rid: 351821110960455680
+  outAnimations:
+  - rid: 351821110960455681
   componentPriority: 0
   animationTarget: {fileID: 0}
   deactivateOnHide: 1
   activateOnShow: 1
   playAllAtOnce: 0
-  affectedByGetComponent: 1
-  overrideOtherAnimationsWhenPlayed: 1
+  affectedByGetComponent: 0
+  overrideOtherAnimationsWhenPlayed: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 351821110960455680
+      type: {class: UIFadeAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 0.3
+        priority: 0
+        easeType: 1
+        useCustomCurve: 0
+        customCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        loopCount: 0
+        startDelay: 0
+        ignoreTimeScale: 0
+        useCustomTarget: 0
+        customAnimationTarget: {fileID: 0}
+        startAlpha: 0
+        endAlpha: 1
+        canvasGroup: {fileID: 1423796834070494813}
+    - rid: 351821110960455681
+      type: {class: UIFadeAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 0.3
+        priority: 0
+        easeType: 1
+        useCustomCurve: 0
+        customCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        loopCount: 0
+        startDelay: 0
+        ignoreTimeScale: 0
+        useCustomTarget: 0
+        customAnimationTarget: {fileID: 0}
+        startAlpha: 1
+        endAlpha: 0
+        canvasGroup: {fileID: 1423796834070494813}
 --- !u!1 &2580656882788759959
 GameObject:
   m_ObjectHideFlags: 0

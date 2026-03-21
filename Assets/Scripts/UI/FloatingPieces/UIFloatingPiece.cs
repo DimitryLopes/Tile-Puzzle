@@ -15,6 +15,8 @@ public class UIFloatingPiece : Activateable, IDragHandler, IPointerEnterHandler,
     [SerializeField]
     private UIAnimationComponent mainMenuAnimation;
     [SerializeField]
+    private UIAnimationComponent optionsAnimation;
+    [SerializeField]
     private UIAnimationComponent frameAnimation;
     [SerializeField]
     private Image image;
@@ -48,6 +50,11 @@ public class UIFloatingPiece : Activateable, IDragHandler, IPointerEnterHandler,
     public void PlayGameAnimation()
     {
         gameAnimation.PlayInAnimations();
+    }
+
+    public void MoveToOptions()
+    {
+        optionsAnimation.PlayInAnimations();
     }
 
     public void SetImage(Sprite sprite)

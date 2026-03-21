@@ -73,6 +73,12 @@ public class GameManager : MonoBehaviour
                 availableEvents.Add(e.gameEvent);
             }
         }
+
+        if(availableEvents.Count == 0)
+        {
+            return;
+        }
+
         GameEvent evt = availableEvents.GetRandom();
         StartEvent(evt);
     }

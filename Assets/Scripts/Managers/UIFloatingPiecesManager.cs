@@ -54,6 +54,12 @@ public class UIFloatingPiecesManager : MonoBehaviour
                     piece.PlayGameAnimation();
                 }
                 break;
+            case Type t when t == typeof(OptionsScreen):
+                foreach (var piece in floatingPieces)
+                {
+                    piece.MoveToOptions();
+                }
+                break;
         }
     }
 

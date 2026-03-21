@@ -447,6 +447,7 @@ MonoBehaviour:
   gameAnimation: {fileID: 3489626189872108013}
   gameModeAnimation: {fileID: 5261488916726681926}
   mainMenuAnimation: {fileID: 249837408740048161}
+  optionsAnimation: {fileID: 5093078450815943412}
   frameAnimation: {fileID: 6823688952617534318}
   image: {fileID: 1887123134316514736}
   canvas: {fileID: 0}
@@ -833,6 +834,7 @@ RectTransform:
   - {fileID: 2858877671098923274}
   - {fileID: 2089969224757667912}
   - {fileID: 3857953548425554982}
+  - {fileID: 1497382606627764007}
   - {fileID: 6594067077682014906}
   - {fileID: 5674722774122504768}
   m_Father: {fileID: 7640192934360513717}
@@ -982,3 +984,138 @@ MonoBehaviour:
         rotationType: 0
         degrees: -360
         endAngle: {x: 0, y: 0, z: 90}
+--- !u!1 &9107437573231494023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497382606627764007}
+  - component: {fileID: 5093078450815943412}
+  m_Layer: 0
+  m_Name: OptionsAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1497382606627764007
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107437573231494023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5760505501089488760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5093078450815943412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107437573231494023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f1defea77c2d0438f65354bc73552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inAnimations:
+  - rid: 351821038957887488
+  outAnimations: []
+  componentPriority: 0
+  animationTarget: {fileID: 2305449906453152239}
+  deactivateOnHide: 0
+  activateOnShow: 0
+  playAllAtOnce: 1
+  affectedByGetComponent: 0
+  overrideOtherAnimationsWhenPlayed: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 351821038957887488
+      type: {class: UIPositionAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 0.3
+        priority: 0
+        easeType: 9
+        useCustomCurve: 0
+        customCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        loopCount: 0
+        startDelay: 0
+        ignoreTimeScale: 0
+        useCustomTarget: 0
+        customAnimationTarget: {fileID: 0}
+        startFromSetPosition: 0
+        finishAtSetPosition: 1
+        startPosition: {x: -0.000061035156, y: 0.000015258789, z: 0}
+        endPosition: {x: -381.88, y: 100, z: 0}
+        movementType: 1
+        movementCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.50478053
+            value: 0.37926382
+            inSlope: 0.0031025778
+            outSlope: 0.0031025778
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.39956594
+          - serializedVersion: 3
+            time: 1
+            value: 0.017906189
+            inSlope: -2.2918055
+            outSlope: -2.2918055
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.13912484
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4

@@ -37,6 +37,14 @@ public class UIBoardSelection : Activateable
     private void OnButtonClicked()
     {
         onSelected?.Invoke(this);
+        if (checkmark.gameObject.activeSelf)
+        {
+            AudioManager.Instance.PlaySFX(AudioKey.UI_click_1);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX(AudioKey.UI_click_2);
+        }
     }
 
     public void ToggleCheckmark(bool toggle)

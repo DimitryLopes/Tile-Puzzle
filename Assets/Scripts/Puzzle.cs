@@ -82,7 +82,7 @@ public class Puzzle : MonoBehaviour
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
             bool isAdjacent = IsAdjacent(puzzlePieces[i].Index, EmptyPiece.Index);
-            puzzlePieces[i].SetInteractable(isAdjacent); //TODO: change to isAdjacent
+            puzzlePieces[i].SetInteractable(isAdjacent);
         }
     }
 

@@ -19,6 +19,8 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
     private Transform gameSelectionContainer;
     [SerializeField]
     private Transform boardSelectionContainer;
+    [SerializeField]
+    private GameObject layoutHelper;
 
     private List<UIGameEventSelection> eventSelections = new List<UIGameEventSelection>();
     private List<UIBoardSelection> boardSelections = new List<UIBoardSelection>();
@@ -53,9 +55,15 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
                 SelectBoard(selection);
             }
         }
-
+        StartCoroutine(DeactivateHelper());
         playButton.onClick.AddListener(Controller.OnPlayButtonClicked);
         returnButton.onClick.AddListener(Controller.OnReturnButtonClicked);
+    }
+
+    private IEnumerator DeactivateHelper()
+    {
+        yield return new WaitForEndOfFrame();
+        layoutHelper.SetActive(false);
     }
 
     protected override void OnAfterHide()
