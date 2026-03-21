@@ -10,6 +10,13 @@ public class GameScreen : UIScreen<GameScreenController>
     private Puzzle puzzle;
     [SerializeField]
     private Image puzzleImage;
+    [SerializeField]
+    private Button returnButton;
+
+    private void Start()
+    {
+        
+    }
 
     protected override void OnBeforeShow()
     {

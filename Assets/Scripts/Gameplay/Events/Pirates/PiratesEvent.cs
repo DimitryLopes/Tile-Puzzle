@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PiratesEvent : GameEvent
@@ -17,6 +14,7 @@ public class PiratesEvent : GameEvent
     public override void EndEvent(bool isWin)
     {
         EventManager.OnGameEventEnded.Invoke(this, isWin);
+        eventContainer.gameObject.SetActive(false);
     }
 
     public override void StartEvent()

@@ -106,12 +106,18 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
 
         if(selectedBoard == boardSelection)
         {
+            Select(boardSelections.GetRandom());
             return;
         }
 
-        selectedBoard = boardSelection;
-        selectedBoard.ToggleCheckmark(true);
-        Controller.OnBoardSelected.Invoke(selectedBoard.Board);
+        Select(boardSelection);
+
+        void Select(UIBoardSelection selection)
+        {
+            selectedBoard = selection;
+            selectedBoard.ToggleCheckmark(true);
+            Controller.OnBoardSelected.Invoke(selectedBoard.Board);
+        }
     }
 
 

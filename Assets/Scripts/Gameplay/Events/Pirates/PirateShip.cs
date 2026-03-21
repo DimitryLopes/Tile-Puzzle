@@ -34,7 +34,7 @@ public class PirateShip : Activateable
             speed * Time.deltaTime
         );
 
-        var distance = Vector3.Distance(rectTransform.anchoredPosition, chest.RectTransform.position);
+        var distance = Vector3.Distance(rectTransform.anchoredPosition, Vector2.zero);
         if (distance < shipSize)
         {
             onTargetReached?.Invoke();
