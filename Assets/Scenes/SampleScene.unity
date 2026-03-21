@@ -818,7 +818,7 @@ MonoBehaviour:
   victoryMessage: 
   defeatMessage: Time died, so did the puzzle, you lost
   eventContainer: {fileID: 1005650863}
-  timeLimit: 22
+  timeLimit: 600
   timerText: {fileID: 921368971}
 --- !u!1001 &1117442708
 PrefabInstance:

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameScreen : UIScreen<GameScreenController>
 {
@@ -7,11 +8,14 @@ public class GameScreen : UIScreen<GameScreenController>
     private AnnouncementText eventText;
     [SerializeField]
     private Puzzle puzzle;
+    [SerializeField]
+    private Image puzzleImage;
 
     protected override void OnBeforeShow()
     {
         base.OnBeforeShow();
         eventText.gameObject.SetActive(false);
+        puzzleImage.sprite = AssetService.GetBoardSprite(Controller.PuzzleName);
         EventManager.OnFloatingPiecesAnimationFinished.AddListener(OnFloatingPiecesAnimationFinished);
         EventManager.OnGameEventStarted.AddListener(OnGameEventStarted);
         EventManager.OnGameEventEnded.AddListener(OnGameEventEnded);

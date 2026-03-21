@@ -17,8 +17,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource audioSourcePrefab;
 
     private AudioSource bgmSource;
-    private float sfxVolume = 0.5f;
-    private float bgmVolume = 0.5f;
+    private float sfxVolume = 0.25f;
+    private float bgmVolume = 0.25f;
 
     public float BGMVolume => bgmVolume;
     public float SFXVolume => sfxVolume;

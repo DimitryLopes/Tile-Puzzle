@@ -13,6 +13,7 @@ public class Classic : GameEvent
     public override void EndEvent(bool isWin)
     {
         EventManager.OnGameEventEnded.Invoke(this, isWin);
+        eventContainer.SetActive(false);
     }
 
     public override void StartEvent()
