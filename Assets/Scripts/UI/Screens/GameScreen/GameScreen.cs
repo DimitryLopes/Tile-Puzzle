@@ -48,7 +48,7 @@ public class GameScreen : UIScreen<GameScreenController>
     protected override void OnAfterHide()
     {
         base.OnAfterHide();
-
+        puzzle.TogglePieces(false);
         EventManager.OnFloatingPiecesAnimationFinished.RemoveListener(OnFloatingPiecesAnimationFinished);
         EventManager.OnGameEventStarted.RemoveListener(OnGameEventStarted);
         EventManager.OnGameEventEnded.RemoveListener(OnGameEventEnded);
@@ -56,7 +56,7 @@ public class GameScreen : UIScreen<GameScreenController>
     }
     private void OnFloatingPiecesAnimationFinished()
     {
-        puzzle.ShowPieces();
+        puzzle.TogglePieces(true);
         puzzle.UpdateInteractables();
         puzzle.StartGame();
     }

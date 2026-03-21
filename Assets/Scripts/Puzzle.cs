@@ -54,17 +54,17 @@ public class Puzzle : MonoBehaviour
 
     public void StartGame()
     {
-        ShowPieces();
+        TogglePieces(true);
         UpdateInteractables();
         EventManager.OnGameStarted.Invoke(this);
     }
 
-    public void ShowPieces()
+    public void TogglePieces(bool toggle)
     {
         foreach(PuzzlePiece piece in puzzlePieces)
         {
             if(piece != EmptyPiece)
-                piece.ToggleImage(true);
+                piece.ToggleImage(toggle);
         }
     }
 

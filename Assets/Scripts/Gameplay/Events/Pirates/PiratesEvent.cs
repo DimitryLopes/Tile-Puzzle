@@ -14,13 +14,17 @@ public class PiratesEvent : GameEvent
     public override void EndEvent(bool isWin)
     {
         EventManager.OnGameEventEnded.Invoke(this, isWin);
+        
+        EventManager.OnPieceMoved.RemoveListener(OnPieceMoved);
         PositionShip();
+        isRunning = false;
         treasureChest.RectTransform.anchoredPosition = shipSpawnPoint;
         eventContainer.gameObject.SetActive(false);
     }
 
     public override void StartEvent()
     {
+        eventContainer.gameObject.SetActive(true);
         EventManager.OnPieceMoved.AddListener(OnPieceMoved);
         ShuffleChest();
         pirateShip.Setup(treasureChest, OnShipReachedChest);
