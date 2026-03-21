@@ -14,6 +14,8 @@ public class PiratesEvent : GameEvent
     public override void EndEvent(bool isWin)
     {
         EventManager.OnGameEventEnded.Invoke(this, isWin);
+        PositionShip();
+        treasureChest.RectTransform.anchoredPosition = shipSpawnPoint;
         eventContainer.gameObject.SetActive(false);
     }
 
