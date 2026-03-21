@@ -25,6 +25,12 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
 
     private UIBoardSelection selectedBoard;
 
+    private void Start()
+    {
+        playButton.onClick.AddListener(PlayButtonSFX);
+        returnButton.onClick.AddListener(PlayReturnButtonSFX);
+    }
+
     protected override void OnBeforeShow()
     {
         base.OnBeforeShow();
@@ -50,6 +56,23 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
 
         playButton.onClick.AddListener(Controller.OnPlayButtonClicked);
         returnButton.onClick.AddListener(Controller.OnReturnButtonClicked);
+    }
+
+    protected override void OnAfterHide()
+    {
+        base.OnAfterHide();
+        foreach(var selection in eventSelections)
+        {
+            selection.Deactivate();
+        }
+
+        foreach(var selection in boardSelections)
+        {
+            selection.Deactivate();
+        }
+
+        playButton.onClick.RemoveListener(Controller.OnPlayButtonClicked);
+        returnButton.onClick.RemoveListener(Controller.OnReturnButtonClicked);
     }
 
     private void OnClassicModeSelected(EventID id = EventID.Classic)
@@ -83,19 +106,6 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
         Controller.OnBoardSelected.Invoke(selectedBoard.Board);
     }
 
-    protected override void OnAfterHide()
-    {
-        base.OnAfterHide();
-        foreach(var selection in eventSelections)
-        {
-            selection.Deactivate();
-        }
-
-        foreach(var selection in boardSelections)
-        {
-            selection.Deactivate();
-        }
-    }
 
     private UIGameEventSelection GetAvailableSelection()
     {
@@ -103,6 +113,7 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
         {
             if (selection.IsActive) continue;
             selection.Activate();
+            return selection;
         }
 
         var newSelection = Instantiate(gameSelectionPrefab, gameSelectionContainer);
@@ -117,6 +128,7 @@ public class GameModeScreen : UIScreen<GameModeScreenController>
         {
             if (selection.IsActive) continue;
             selection.Activate();
+            return selection;
         }
 
         var newSelection = Instantiate(boardSelectionPrefab, boardSelectionContainer);

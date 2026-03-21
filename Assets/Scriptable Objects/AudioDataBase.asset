@@ -16,3 +16,18 @@ MonoBehaviour:
   - audioKey: 0
     audioClip: {fileID: 8300000, guid: 88d27967693517045b5d1d760666b927, type: 3}
     origin: 0
+  - audioKey: 1
+    audioClip: {fileID: 8300000, guid: 6543410bd3431214986c930fc9d85834, type: 3}
+    origin: 2
+  - audioKey: 2
+    audioClip: {fileID: 8300000, guid: 60b84568bf15f2d4087a02a910c925eb, type: 3}
+    origin: 2
+  - audioKey: 3
+    audioClip: {fileID: 8300000, guid: 6c9005a6e9b37f54b9f53655e36e2a4c, type: 3}
+    origin: 2
+  - audioKey: 4
+    audioClip: {fileID: 8300000, guid: b763cc48ef228264b8c639c945b19bea, type: 3}
+    origin: 2
+  - audioKey: 5
+    audioClip: {fileID: 8300000, guid: d94c3c04bdbb4f54195614f18b8ff436, type: 3}
+    origin: 2

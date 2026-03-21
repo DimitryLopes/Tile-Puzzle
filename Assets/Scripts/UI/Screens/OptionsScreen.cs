@@ -22,22 +22,23 @@ public class OptionsScreen : UIScreen<OptionsScreenController>
     {
         base.OnBeforeShow();
         audioManager = AudioManager.Instance;
-        sfxSlider.value = audioManager.SFXVolume * 10;
-        bgmSlider.value = audioManager.BGMVolume * 10;
+        sfxSlider.value = audioManager.SFXVolume;
+        bgmSlider.value = audioManager.BGMVolume;
     }
 
     public void ChangeBGMVolume(float volume)
     {
-        audioManager.ChangeBGMVolume(volume / 10);
+        audioManager.ChangeBGMVolume(volume);
     }
 
     public void ChangeSFXVolume(float volume)
     {
-        audioManager.ChangeSFXVolume(volume / 10);
+        audioManager.ChangeSFXVolume(volume);
     }
 
     public void OnButtonClicked()
     {
         Controller.OnBackButtonClicked.Invoke();
+        PlayReturnButtonSFX();
     }
 }

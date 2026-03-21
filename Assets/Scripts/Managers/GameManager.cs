@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour
     private Board currentBoard;
 
     public static GameManager Instance { get; private set; }
+    public Puzzle Puzzle { get; private set; }
 
     private GameEvent ClassicMode => eventDatas[0].gameEvent;
-    public Puzzle Puzzle { get; private set; }
 
     private void Awake()
     {

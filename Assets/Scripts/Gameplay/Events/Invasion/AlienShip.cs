@@ -70,7 +70,7 @@ public class AlienShip : Activateable
 
         LeanTween.move(rectTransform, finalPosition, animationDuration)
             .setOnComplete(Deactivate);
-
+        AudioManager.Instance.PlaySFX(AudioKey.event_ship_destroyed);
         rectTransform.LeanRotateZ(Constants.Events.DEFAULT_OBJECT_ROTATION, animationDuration);
     }
 

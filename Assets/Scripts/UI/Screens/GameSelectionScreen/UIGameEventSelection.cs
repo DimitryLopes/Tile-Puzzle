@@ -35,6 +35,14 @@ public class UIGameEventSelection : Activateable
     private void OnButtonClick()
     {
         ToggleCheckmark(!checkmark.gameObject.activeSelf);
+        if(checkmark.gameObject.activeSelf)
+        {
+            AudioManager.Instance.PlaySFX(AudioKey.UI_click_1);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX(AudioKey.UI_click_2);
+        }
         onButtonClick?.Invoke(id);
     }
 

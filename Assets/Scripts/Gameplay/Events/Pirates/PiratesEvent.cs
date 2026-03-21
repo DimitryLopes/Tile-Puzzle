@@ -45,6 +45,7 @@ public class PiratesEvent : GameEvent
     private void OnChestOpened()
     {
         isRunning = false;
+        AudioManager.Instance.PlaySFX(AudioKey.event_chest_opened);
         pirateShip.DestroyShip(OnShipDestroyed);        
     }
 

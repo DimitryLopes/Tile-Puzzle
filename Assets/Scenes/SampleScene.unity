@@ -834,11 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 249837408740048161, guid: d239e9e839f7f4a458d79c769f690228, type: 3}
       propertyPath: managedReferences[351821038957887488].endPosition.x
-      value: 229
+      value: 392
       objectReference: {fileID: 0}
     - target: {fileID: 249837408740048161, guid: d239e9e839f7f4a458d79c769f690228, type: 3}
       propertyPath: managedReferences[351821038957887488].endPosition.y
-      value: 92
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2305449906453152239, guid: d239e9e839f7f4a458d79c769f690228, type: 3}
       propertyPath: m_Name

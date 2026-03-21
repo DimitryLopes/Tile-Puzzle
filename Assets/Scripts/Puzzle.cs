@@ -127,6 +127,7 @@ public class Puzzle : MonoBehaviour
     {
         if (EmptyPiece.IsMouseOver)
         {
+            AudioManager.Instance.PlaySFX(AudioKey.UI_piece_move);
             piece.Move(EmptyPiece);
             bool isGameOver = CheckGameOver();
 

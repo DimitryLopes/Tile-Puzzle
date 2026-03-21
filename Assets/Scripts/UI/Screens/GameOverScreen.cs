@@ -15,10 +15,18 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
     [SerializeField]
     private Button exitButton;
 
+    private void Start()
+    {
+        playAgainButton.onClick.AddListener(PlayButtonSFX);
+        mainMenuButton.onClick.AddListener(PlayReturnButtonSFX);
+        exitButton.onClick.AddListener(PlayReturnButtonSFX);
+    }
+
     protected override void OnBeforeShow()
     {
         base.OnBeforeShow();
         playAgainButton.onClick.AddListener(OnPlayAgainButtonClicked);
+        mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
         subtitleText.text = Controller.SubtitleText;
         titleText.text = Controller.IsWin ? Constants.Screens.GAME_OVER_SCREEN_VICTORY_TEXT : Constants.Screens.GAME_OVER_SCREEN_DEFEAT_TEXT;
@@ -28,6 +36,7 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
     {
         base.OnAfterHide();
         playAgainButton.onClick.RemoveListener(OnPlayAgainButtonClicked);
+        mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClicked);
         exitButton.onClick.RemoveListener(OnExitButtonClicked);
     }
 

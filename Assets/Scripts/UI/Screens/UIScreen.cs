@@ -80,4 +80,14 @@ public class UIScreen<U> : MonoBehaviour, IScreen where U : ScreenController
         OnBeforeHide();
         OnAfterHide();
     }
+
+    protected void PlayButtonSFX()
+    {
+        AudioManager.Instance.PlaySFX(AudioKey.UI_click_1);
+    }
+
+    protected void PlayReturnButtonSFX()
+    {
+        AudioManager.Instance.PlaySFX(AudioKey.UI_click_2);
+    }
 }

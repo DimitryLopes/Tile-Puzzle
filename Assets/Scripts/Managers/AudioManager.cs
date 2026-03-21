@@ -1,8 +1,6 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static TweenUtils;
 
 public class AudioManager : MonoBehaviour
 {
@@ -40,8 +38,6 @@ public class AudioManager : MonoBehaviour
 
     public void OnEnable()
     {
-        //bgmVolume = persistenceManager.GetBGMPreferences();
-        //sfxVolume = persistenceManager.GetSFXPreferences();
         CreateBGMSource();
     }
 
