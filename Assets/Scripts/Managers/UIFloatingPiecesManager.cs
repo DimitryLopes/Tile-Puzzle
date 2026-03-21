@@ -103,7 +103,7 @@ public class UIFloatingPiecesManager : MonoBehaviour
         }
     }
 
-    private void OnGameOver(GameEvent evt, bool win)
+    public void OnGameOver(GameEvent evt, bool win)
     {
         foreach(var piece in floatingPieces)
         {

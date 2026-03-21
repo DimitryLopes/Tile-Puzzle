@@ -15,6 +15,9 @@ public class MainMenuScreen : UIScreen<MainMenuScreenController>
         startGameButton.onClick.AddListener(PlayButtonSFX);
         exitGameButton.onClick.AddListener(PlayReturnButtonSFX);
         optionsScreenButton.onClick.AddListener(PlayButtonSFX);
+#if UNITY_WEBGL
+        exitGameButton.gameObject.SetActive(false);
+#endif
     }
 
     protected override void OnBeforeShow()

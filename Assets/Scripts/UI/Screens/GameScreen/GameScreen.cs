@@ -15,7 +15,7 @@ public class GameScreen : UIScreen<GameScreenController>
 
     private void Start()
     {
-        
+        returnButton.onClick.AddListener(OnReturnButtonClicked);
     }
 
     protected override void OnBeforeShow()
@@ -59,5 +59,11 @@ public class GameScreen : UIScreen<GameScreenController>
         puzzle.ShowPieces();
         puzzle.UpdateInteractables();
         puzzle.StartGame();
+    }
+    
+    private void OnReturnButtonClicked()
+    {
+        Controller.OnReturnButtonClicked.Invoke();
+        PlayReturnButtonSFX();
     }
 }

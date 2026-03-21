@@ -94,10 +94,19 @@ public class GameManager : MonoBehaviour
     private void OnGameEventEnded(GameEvent evt, bool isWin)
     {
         isEventActive = false;
-        if (isWin) return;
+        if (isWin || !isPlaying) return;
         EventManager.OnGameOver.Invoke(evt, isWin);
     }
 
+    private void ForceShowMainMenu()
+    {
+        isPlaying = false;
+        ShowMainMenu();
+        UIFloatingPiecesManager.Instance.OnGameOver(null, false);
+        if (currentEvent == null) return;
+        currentEvent.EndEvent(false);
+        currentEvent = null;
+    }
     private void ShowMainMenu()
     {
         var controller = new MainMenuScreenController(ShowGameSelectionScreen, ExitGame, ShowOptionsScreen);
@@ -142,7 +151,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         isPlaying = true;
-        var controller = new GameScreenController(currentBoard.ToString(), canvas);
+        var controller = new GameScreenController(currentBoard.ToString(), canvas, ForceShowMainMenu);
         ScreenManager.Instance.Show<GameScreen>(controller);
     }
 

@@ -20,6 +20,9 @@ public class GameOverScreen : UIScreen<GameOverScreenController>
         playAgainButton.onClick.AddListener(PlayButtonSFX);
         mainMenuButton.onClick.AddListener(PlayReturnButtonSFX);
         exitButton.onClick.AddListener(PlayReturnButtonSFX);
+#if UNITY_WEBGL
+        exitButton.gameObject.SetActive(false);
+#endif
     }
 
     protected override void OnBeforeShow()
